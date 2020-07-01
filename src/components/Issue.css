@@ -69,7 +69,7 @@
   padding: 8px 16px 0 0;
 }
 
-.issue__icon-group>div {
+.issue__icon-group > div {
   margin-left: 8px;
   flex-shrink: 0 !important;
   flex: 1 !important;
@@ -125,6 +125,11 @@
   width: 100%;
 }
 
+.issue__body-fake {
+  width: 95%;
+  height: 60px;
+}
+
 .issue--loading .issue__body {
   width: 100%;
 }
@@ -132,8 +137,8 @@
 .issue--loading .issue__number,
 .issue--loading .issue__title {
   background-color: #e5e5e5;
-  display: inline-block;
-  /* margin-right: 0.5rem; */
+  /* display: inline-block; */
+  margin-right: 0.5rem;
 }
 
 .issue--loading .issue__number {
@@ -148,4 +153,5 @@
 .issue--loading .issue__summary {
   background-color: #e5e5e5;
   width: 95%;
+  margin: 10px !important;
 }

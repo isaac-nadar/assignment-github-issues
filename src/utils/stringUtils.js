@@ -34,9 +34,9 @@ export function shorten(text = "", maxLength = 140) {
 }
 
 export function timeSince(date) {
-  var seconds = Math.floor((new Date() - date) / 1000);
+  const seconds = Math.floor((new Date() - date) / 1000);
 
-  var interval = Math.floor(seconds / 31536000);
+  let interval = Math.floor(seconds / 31536000);
 
   if (interval > 1) {
     return interval + " years";
@@ -62,15 +62,15 @@ export function timeSince(date) {
 
 export function getContrastYIQ(hexcolor) {
   hexcolor = hexcolor.replace("#", "");
-  var r = parseInt(hexcolor.substr(0, 2), 16);
-  var g = parseInt(hexcolor.substr(2, 2), 16);
-  var b = parseInt(hexcolor.substr(4, 2), 16);
-  var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  const r = parseInt(hexcolor.substr(0, 2), 16);
+  const g = parseInt(hexcolor.substr(2, 2), 16);
+  const b = parseInt(hexcolor.substr(4, 2), 16);
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   return yiq >= 128 ? "black" : "white";
 }
 
 export function formatDate(data) {
-  var monthNames = [
+  const monthNames = [
     "Jan",
     "Feb",
     "Mar",
