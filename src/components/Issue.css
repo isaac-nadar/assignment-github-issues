@@ -20,6 +20,36 @@
   margin-top: 4px;
 }
 
+.org-repo-tooltip {
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.summary-tooltip-icon {
+  margin-right: 10px;
+}
+
+.summary-tooltip-data {
+  font-size: 14px;
+}
+
+.issue__title-tooltip {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.issue__title-tooltip:hover {
+  color: #0366d6;
+}
+
+.margin-btm {
+  margin-bottom: 10px;
+}
+
+.summary-tooltip-icon .octicon {
+  fill: #28a745;
+}
+
 .issue__body-icon .octicon {
   fill: #28a745;
 }
@@ -45,9 +75,17 @@
   flex: 1 !important;
 }
 
+.summary-tooltip {
+  padding: 5px;
+  text-align: left;
+  min-height: 120px;
+  width: 360px;
+}
+
 .issue__title {
   font-weight: 500;
   font-size: 16px;
+  margin-right: 5px;
 }
 
 .issue__title:hover {
@@ -78,9 +116,9 @@
   padding-left: 0.5rem;
 }
 
-.issue__labels {
+/* .issue__labels {
   padding-left: 0.5rem;
-}
+} */
 
 .issue__body {
   display: flex;

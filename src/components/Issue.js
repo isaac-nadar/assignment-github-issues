@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 
-// import UserWithAvatar from "./UserWithAvatar";
 import IssueLabels from "./IssueLabels";
-import { timeSince } from "../utils/stringUtils";
+import { Tooltip } from "react-tippy";
+import { timeSince, formatDate, shorten } from "../utils/stringUtils";
 import {
   IssueOpenedIcon,
   CommentIcon,
@@ -12,6 +12,7 @@ import {
 } from "@primer/octicons-react";
 
 import "./Issue.css";
+import "react-tippy/dist/tippy.css";
 
 const Issue = ({
   number,
@@ -23,6 +24,7 @@ const Issue = ({
   createdat,
   comments,
   pull_request,
+  url,
 }) => {
   const { org, repo } = match.params;
   const commentIcon = comments ? (
@@ -38,6 +40,27 @@ const Issue = ({
     </div>
   ) : null;
 
+  const titleSummary = (
+    <div className="summary-tooltip">
+      <div className="org-repo-tooltip">
+        {`${org}/${repo}`} on {formatDate(createdat)}
+      </div>
+      <div className="display-flex">
+        <div className="summary-tooltip-icon">
+          <IssueOpenedIcon />
+        </div>
+        <div className="summary-tooltip-data">
+          <div className="margin-btm">
+            <span className="issue__title-tooltip">{title}</span>{" "}
+            <span>#{number}</span>
+          </div>
+          <div className="margin-btm">{shorten(summary)}</div>
+          <IssueLabels labels={labels} />
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="issue">
       <div className="issue__body">
@@ -47,9 +70,11 @@ const Issue = ({
 
         <div className="issue-middle-section">
           <div className="display-flex">
-            <Link to={`/${org}/${repo}/issues/${number}`}>
-              <span className="issue__title">{title}</span>
-            </Link>
+            <Tooltip interactive html={titleSummary} theme="light" delay="250">
+              <Link to={`/${org}/${repo}/issues/${number}`}>
+                <span className="issue__title">{title}</span>
+              </Link>
+            </Tooltip>
             <IssueLabels labels={labels} />
           </div>
 

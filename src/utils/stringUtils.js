@@ -68,3 +68,25 @@ export function getContrastYIQ(hexcolor) {
   var yiq = (r * 299 + g * 587 + b * 114) / 1000;
   return yiq >= 128 ? "black" : "white";
 }
+
+export function formatDate(data) {
+  var monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const date = new Date(data);
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+
+  return `${monthNames[monthIndex]} ${day}`;
+}

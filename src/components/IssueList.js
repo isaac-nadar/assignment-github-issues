@@ -17,6 +17,7 @@ export default function IssueList({ issues }) {
             createdat={issue.created_at}
             comments={issue.comments}
             pull_request={issue.pull_request}
+            url={issue.url}
           />
         </li>
       ))}
