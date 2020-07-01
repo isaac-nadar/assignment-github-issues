@@ -8,6 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
   color: #24292e;
+  line-height: 1.25 !important;
+  box-sizing: border-box;
 }
 
 a {
@@ -25,4 +27,40 @@ h4,
 h5,
 h6 {
   font-weight: 400;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  font-size: 11px;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -110px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 90%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

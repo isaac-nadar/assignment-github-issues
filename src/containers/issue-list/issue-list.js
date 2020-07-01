@@ -8,23 +8,15 @@ import Paginate from "react-paginate";
 import FakeIssueList from "../../components/FakeIssueList";
 import IssueList from "../../components/IssueList";
 import "./issue-list.css";
+import { IssueOpenedIcon } from "@primer/octicons-react";
 
 function Header({ openIssuesCount, org, repo }) {
-  if (openIssuesCount === -1) {
-    return (
-      <h1>
-        Open issues for <OrgRepo org={org} repo={repo} />
-      </h1>
-    );
-  } else {
-    const pluralizedIssue = openIssuesCount === 1 ? "issue" : "issues";
-    return (
-      <h1>
-        <span className="header__openIssues">{openIssuesCount}</span> open{" "}
-        {pluralizedIssue} for <OrgRepo org={org} repo={repo} />
-      </h1>
-    );
-  }
+  const pluralizedIssue = openIssuesCount === 1 ? "issue" : "issues";
+  return (
+    <h1>
+      Github {pluralizedIssue} of <OrgRepo org={org} repo={repo} />
+    </h1>
+  );
 }
 
 function OrgRepo({ org, repo }) {
@@ -111,6 +103,9 @@ export class IssueListPage extends Component {
     return (
       <div id="issue-list-page">
         <Header openIssuesCount={openIssuesCount} org={org} repo={repo} />
+        <div className="issues__header">
+          <IssueOpenedIcon /> {openIssuesCount} Open
+        </div>
         {isLoading ? <FakeIssueList /> : <IssueList issues={issues} />}
         <div className="issues__pagination">
           <Paginate

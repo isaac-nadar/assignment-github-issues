@@ -14,6 +14,9 @@ export default function IssueList({ issues }) {
             title={issue.title}
             summary={issue.body}
             labels={issue.labels}
+            createdat={issue.created_at}
+            comments={issue.comments}
+            pull_request={issue.pull_request}
           />
         </li>
       ))}

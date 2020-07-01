@@ -2,24 +2,68 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 
-import UserWithAvatar from "./UserWithAvatar";
+// import UserWithAvatar from "./UserWithAvatar";
 import IssueLabels from "./IssueLabels";
-import { shorten } from "../utils/stringUtils";
+import { timeSince } from "../utils/stringUtils";
+import {
+  IssueOpenedIcon,
+  CommentIcon,
+  GitPullRequestIcon,
+} from "@primer/octicons-react";
 
 import "./Issue.css";
 
-const Issue = ({ number, title, labels, user, summary, match }) => {
+const Issue = ({
+  number,
+  title,
+  labels,
+  user,
+  summary,
+  match,
+  createdat,
+  comments,
+  pull_request,
+}) => {
   const { org, repo } = match.params;
+  const commentIcon = comments ? (
+    <Link to={`/${org}/${repo}/issues/${number}`} className="comment-section">
+      <CommentIcon /> {comments}
+    </Link>
+  ) : null;
+
+  const pullRequestIcon = pull_request ? (
+    <div className="tooltip">
+      <GitPullRequestIcon /> 1
+      <span className="tooltiptext">1 linked pull request</span>
+    </div>
+  ) : null;
+
   return (
     <div className="issue">
-      <UserWithAvatar user={user} />
       <div className="issue__body">
-        <Link to={`/${org}/${repo}/issues/${number}`}>
-          <span className="issue__number">#{number}</span>
-          <span className="issue__title">{title}</span>
-        </Link>
-        <p className="issue__summary">{shorten(summary)}</p>
-        <IssueLabels labels={labels} />
+        <div className="issue__body-icon">
+          <IssueOpenedIcon />
+        </div>
+
+        <div className="issue-middle-section">
+          <div className="display-flex">
+            <Link to={`/${org}/${repo}/issues/${number}`}>
+              <span className="issue__title">{title}</span>
+            </Link>
+            <IssueLabels labels={labels} />
+          </div>
+
+          <div className="issue__number">
+            <span>#{number}</span>
+            <span>{timeSince(new Date(createdat))} ago</span>
+            <span>by {user.login}</span>
+          </div>
+        </div>
+
+        <div className="issue__icon-group">
+          <div>{pullRequestIcon}</div>
+          <div>{commentIcon}</div>
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,13 @@
+.issues__header {
+    padding: 16px;
+    font-weight: 500;
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: none;
+}
+
 .issues__pagination {
     padding-top: 1rem;
     text-align: center;

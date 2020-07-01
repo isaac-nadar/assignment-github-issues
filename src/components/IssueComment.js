@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ReactMarkdown from "react-markdown";
+
 import UserWithAvatar from "./UserWithAvatar";
 import { insertMentionLinks } from "../utils/stringUtils";
-import ReactMarkdown from "react-markdown";
 
 export default function IssueComment({ comment }) {
   return (

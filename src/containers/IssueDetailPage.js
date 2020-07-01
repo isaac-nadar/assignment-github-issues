@@ -25,11 +25,9 @@ export class IssueDetailPage extends Component {
   };
 
   componentDidMount() {
-    // Fetch the issue if we weren't given one
     if (!this.props.issue) {
       this.props.getIssue();
     } else {
-      // If we have the issue already, get its comments
       this.props.getComments(this.props.issue);
     }
   }
@@ -47,7 +45,6 @@ export class IssueDetailPage extends Component {
   renderComments() {
     const { issue, comments, commentsError } = this.props;
 
-    // Return early if there's an error
     if (commentsError) {
       return (
         <div className="issue-detail--comments-error">
@@ -56,12 +53,10 @@ export class IssueDetailPage extends Component {
       );
     }
 
-    // The issue has no comments
     if (issue.comments === 0) {
       return <div className="issue-detail--no-comments">No comments</div>;
     }
 
-    // The issue has comments, but they're not loaded yet
     if (!comments || comments.length === 0) {
       return (
         <div className="issue-detail--comments-loading">
@@ -70,7 +65,6 @@ export class IssueDetailPage extends Component {
       );
     }
 
-    // Comments are loaded
     return <IssueComments comments={comments} />;
   }
 
