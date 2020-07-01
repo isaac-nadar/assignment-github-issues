@@ -20,7 +20,9 @@ const IssueNumber = ({ issue }) => (
 );
 
 export class IssueDetailPage extends Component {
-  state = {};
+  state = {
+    issue: "",
+  };
 
   componentDidMount() {
     // Fetch the issue if we weren't given one
@@ -35,6 +37,9 @@ export class IssueDetailPage extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.issue !== prevState.issue) {
       nextProps.getComments(nextProps.issue);
+      return {
+        issue: nextProps.issue,
+      };
     }
     return null;
   }

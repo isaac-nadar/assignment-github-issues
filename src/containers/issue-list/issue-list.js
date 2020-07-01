@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { getIssues, getRepoDetails } from "../../store/actions";
+import Paginate from "react-paginate";
 
 import FakeIssueList from "../../components/FakeIssueList";
 import IssueList from "../../components/IssueList";
@@ -39,7 +40,11 @@ function OrgRepo({ org, repo }) {
 export class IssueListPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      location: {
+        search: "",
+      },
+    };
   }
 
   componentDidMount() {
@@ -55,6 +60,30 @@ export class IssueListPage extends Component {
     getIssues(org, repo, currentPage);
   }
 
+  handlePageChange = ({ selected }) => {
+    const newPage = selected + 1;
+
+    this.props.history.push({
+      pathname: this.props.location.pathname,
+      search: `?page=${newPage}`,
+    });
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { getIssues, org, repo, location } = nextProps;
+
+    // Fetch new issues whenever the page changes
+    if (location.search !== prevState.location.search) {
+      getIssues(org, repo, parseInt(location.search.slice(-1), 10) || 1);
+      return {
+        location: {
+          search: location.search,
+        },
+      };
+    }
+    return null;
+  }
+
   render() {
     const {
       org,
@@ -66,10 +95,34 @@ export class IssueListPage extends Component {
       issuesError,
       location,
     } = this.props;
+
+    if (issuesError) {
+      return (
+        <div>
+          <h1>Something went wrong...</h1>
+          <div>{issuesError.toString()}</div>
+        </div>
+      );
+    }
+
+    const currentPage =
+      Math.min(pageCount, Math.max(1, parseInt(location.search, 10) || 1)) - 1;
+
     return (
       <div id="issue-list-page">
         <Header openIssuesCount={openIssuesCount} org={org} repo={repo} />
         {isLoading ? <FakeIssueList /> : <IssueList issues={issues} />}
+        <div className="issues__pagination">
+          <Paginate
+            forcePage={currentPage}
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageChange}
+            nextLabel="&rarr;"
+            previousLabel="&larr;"
+          />
+        </div>
       </div>
     );
   }
