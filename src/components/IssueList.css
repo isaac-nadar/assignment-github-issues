@@ -9,3 +9,19 @@
 .issues>li {
   list-style: none;
 }
+
+.no-issue-data {
+  width: 100%;
+  padding: 80px 40px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.no-issue-data .octicon {
+  fill: #a3aab1;
+}
+
+.no-issue-data-text {
+  margin-top: 25px;
+}

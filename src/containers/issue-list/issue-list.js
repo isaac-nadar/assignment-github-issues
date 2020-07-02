@@ -100,24 +100,32 @@ export class IssueListPage extends Component {
     const currentPage =
       Math.min(pageCount, Math.max(1, parseInt(location.search, 10) || 1)) - 1;
 
+    const paginator = openIssuesCount ? (
+      <div className="issues__pagination">
+        <Paginate
+          forcePage={currentPage}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageChange}
+          nextLabel="&rarr;"
+          previousLabel="&larr;"
+        />
+      </div>
+    ) : null;
+
     return (
       <div id="issue-list-page">
         <Header openIssuesCount={openIssuesCount} org={org} repo={repo} />
         <div className="issues__header">
-          <IssueOpenedIcon /> {openIssuesCount} Open
+          <IssueOpenedIcon /> {openIssuesCount} Open Issues
         </div>
-        {isLoading ? <FakeIssueList /> : <IssueList issues={issues} />}
-        <div className="issues__pagination">
-          <Paginate
-            forcePage={currentPage}
-            pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={this.handlePageChange}
-            nextLabel="&rarr;"
-            previousLabel="&larr;"
-          />
-        </div>
+        {isLoading ? (
+          <FakeIssueList />
+        ) : (
+          <IssueList issues={issues} openCount={openIssuesCount} />
+        )}
+        {paginator}
       </div>
     );
   }

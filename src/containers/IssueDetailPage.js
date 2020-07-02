@@ -5,13 +5,15 @@ import { connect } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { insertMentionLinks } from "../utils/stringUtils";
 import UserWithAvatar from "../components/UserWithAvatar";
-import IssueLabels from "../components/IssueLabels";
 import IssueComments from "../components/IssueComments";
 import "./IssueDetailPage.css";
+import { timeSince } from "../utils/stringUtils";
+import { IssueOpenedIcon } from "@primer/octicons-react";
 
 const IssueState = ({ issue: { state } }) => (
   <span className={`issue-detail__state issue-detail__state--${state}`}>
-    {state}
+    <IssueOpenedIcon />
+    <span class="margin-left">{state}</span>
   </span>
 );
 
@@ -73,21 +75,33 @@ export class IssueDetailPage extends Component {
 
     return (
       <div className="issue-detail">
-        <h1 className="issue-detail__title">{issue.title}</h1>
+        <h1 className="issue-detail__title">
+          {issue.title} <IssueNumber issue={issue} />
+        </h1>
         <div className="issue-detail__meta">
-          <IssueNumber issue={issue} />
           <IssueState issue={issue} />
-          <UserWithAvatar user={issue.user} orientation="horizontal" />
+          <span class="detail-issue-user">{issue.user.login} </span>
+          <span>
+            opened this issue {timeSince(new Date(issue.created_at))} ago
+          </span>
         </div>
-        <IssueLabels labels={issue.labels} />
-        <hr className="divider--short" />
-        <div className="issue-detail__summary">
-          <ReactMarkdown
-            className="markdown"
-            source={insertMentionLinks(issue.body)}
-          />
+
+        <hr className="divider--short mb-20" />
+
+        <div class="display-flex mb-20">
+          <div className="issue-detail__comment">
+            <UserWithAvatar user={issue.user} orientation="horizontal" />
+          </div>
+          <div className="issue-detail__comment__body">
+            <div className="comment-title">asdasdasd</div>
+            <div className="comment-title-markdown">
+              <ReactMarkdown
+                className="markdown"
+                source={insertMentionLinks(issue.body)}
+              />
+            </div>
+          </div>
         </div>
-        <hr className="divider--short" />
         {this.renderComments()}
       </div>
     );
