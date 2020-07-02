@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { getIssue, getComments } from "../store/actions";
+import { getIssue, getComments } from "../../store/actions";
 import { connect } from "react-redux";
 import ReactMarkdown from "react-markdown";
-import { insertMentionLinks } from "../utils/stringUtils";
-import UserWithAvatar from "../components/UserWithAvatar";
-import IssueComments from "../components/IssueComments";
+import { insertMentionLinks } from "../../utils/stringUtils";
+import UserWithAvatar from "../../components/UserWithAvatar";
+import IssueComments from "../../components/IssueComments";
 import "./IssueDetailPage.css";
-import { timeSince } from "../utils/stringUtils";
+import { timeSince } from "../../utils/stringUtils";
 import { IssueOpenedIcon } from "@primer/octicons-react";
 
 const IssueState = ({ issue: { state } }) => (
