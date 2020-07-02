@@ -8,7 +8,7 @@ import { timeSince } from "../utils/stringUtils";
 
 export default function IssueComment({ comment }) {
   return (
-    <div class="display-flex mb-20">
+    <div className="display-flex mb-20">
       <div className="issue-detail__comment">
         <UserWithAvatar user={comment.user} orientation="horizontal" />
       </div>

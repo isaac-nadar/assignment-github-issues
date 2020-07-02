@@ -13,7 +13,7 @@ import { IssueOpenedIcon } from "@primer/octicons-react";
 const IssueState = ({ issue: { state } }) => (
   <span className={`issue-detail__state issue-detail__state--${state}`}>
     <IssueOpenedIcon />
-    <span class="margin-left">{state}</span>
+    <span className="margin-left">{state}</span>
   </span>
 );
 
@@ -80,7 +80,7 @@ export class IssueDetailPage extends Component {
         </h1>
         <div className="issue-detail__meta">
           <IssueState issue={issue} />
-          <span class="detail-issue-user">{issue.user.login} </span>
+          <span className="detail-issue-user">{issue.user.login} </span>
           <span>
             opened this issue {timeSince(new Date(issue.created_at))} ago
           </span>
@@ -88,7 +88,7 @@ export class IssueDetailPage extends Component {
 
         <hr className="divider--short mb-20" />
 
-        <div class="display-flex mb-20">
+        <div className="mb-20 display-flex">
           <div className="issue-detail__comment">
             <UserWithAvatar user={issue.user} orientation="horizontal" />
           </div>

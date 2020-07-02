@@ -104,7 +104,7 @@
 }
 
 .issue-detail__comments {
-  /* padding: 0 1rem; */
+  padding: 0;
 }
 
 .issue-detail__comments>li {
