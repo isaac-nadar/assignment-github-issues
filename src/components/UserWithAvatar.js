@@ -11,7 +11,6 @@ const UserWithAvatar = ({ user, orientation = "vertical", link = true }) => {
       className={`issue__user ${orientation}`}
     >
       <img className="issue__user__avatar" src={user.avatar_url} alt="" />
-      {/* <div className="issue__user__name">{user.login}</div> */}
     </Wrapper>
   );
 };

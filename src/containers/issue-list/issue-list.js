@@ -45,7 +45,7 @@ export class IssueListPage extends Component {
 
     const currentPage = Math.max(
       1,
-      parseInt(this.props.location.search, 10) || 1
+      parseInt(this.props.location.search.slice(-1), 10) || 1
     );
 
     getRepoDetails(org, repo);
