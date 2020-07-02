@@ -93,7 +93,10 @@ export class IssueDetailPage extends Component {
             <UserWithAvatar user={issue.user} orientation="horizontal" />
           </div>
           <div className="issue-detail__comment__body">
-            <div className="comment-title">asdasdasd</div>
+            <div className="comment-title">
+              <span className="text-bold">{issue.user.login}</span> commented{" "}
+              {timeSince(new Date(issue.created_at))} ago
+            </div>
             <div className="comment-title-markdown">
               <ReactMarkdown
                 className="markdown"

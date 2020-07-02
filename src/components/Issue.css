@@ -19,6 +19,10 @@
   color: #586069;
 }
 
+.hover-color {
+  background: #f6f8fa;
+}
+
 .org-repo-tooltip {
   font-size: 11px;
   margin-bottom: 10px;

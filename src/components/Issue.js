@@ -61,8 +61,17 @@ const Issue = ({
     </div>
   );
 
+  const handleMouseOver = (e) => {
+    let issues = document.getElementsByClassName("issue-wrapper");
+
+    [].forEach.call(issues, function (el) {
+      el.classList.remove("hover-color");
+    });
+    e.currentTarget.className += " hover-color";
+  };
+
   return (
-    <div className="issue">
+    <div className="issue issue-wrapper" onMouseOver={handleMouseOver}>
       <div className="issue__body">
         <div className="issue__body-icon">
           <IssueOpenedIcon />
