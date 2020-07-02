@@ -98,7 +98,10 @@ export class IssueListPage extends Component {
     }
 
     const currentPage =
-      Math.min(pageCount, Math.max(1, parseInt(location.search, 10) || 1)) - 1;
+      Math.min(
+        pageCount,
+        Math.max(1, parseInt(location.search.slice(-1), 10) || 1)
+      ) - 1;
 
     const paginator = openIssuesCount ? (
       <div className="issues__pagination">

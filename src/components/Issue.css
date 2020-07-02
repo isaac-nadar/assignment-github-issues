@@ -135,6 +135,11 @@
 .issue__body-fake {
   width: 95%;
   height: 60px;
+  padding-top: 5px;
+}
+
+.issue--loading {
+  margin-left: 10px;
 }
 
 .issue--loading .issue__body {
@@ -159,6 +164,12 @@
 
 .issue--loading .issue__summary {
   background-color: #e5e5e5;
-  width: 95%;
-  margin: 10px !important;
+  width: 50%;
+  margin: 5px;
+}
+
+.issue--loading .issue__number {
+  background-color: #e5e5e5;
+  width: 30%;
+  margin: 5px;
 }

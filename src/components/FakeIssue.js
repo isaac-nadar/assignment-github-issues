@@ -1,7 +1,5 @@
 import React from "react";
-// import UserWithAvatar from "./UserWithAvatar";
 import IssueLabels from "./IssueLabels";
-// import noAvatar from "../images/no-avatar.png";
 import "./Issue.css";
 
 export default function FakeIssue() {
@@ -17,8 +15,11 @@ export default function FakeIssue() {
   return (
     <div className="issue issue--loading">
       <div className="issue__body-fake">
-        <p className="issue__summary">&nbsp;</p>
-        <IssueLabels labels={fakeLabels.slice(0, upTo4)} />
+        <div className="display-flex">
+          <p className="issue__summary">&nbsp;</p>
+          <IssueLabels labels={fakeLabels.slice(0, upTo4)} />
+        </div>
+        <p className="issue__number">&nbsp;</p>
       </div>
     </div>
   );
